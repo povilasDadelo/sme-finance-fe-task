@@ -12,7 +12,7 @@ interface ProgressIndicatorProps {
 
 const Container = styled.div`
   position: absolute;
-  left: 5px;
+  left: 40px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
