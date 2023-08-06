@@ -1,3 +1,4 @@
+import { useGlobalStore } from "@/store/global.store";
 import { ReactNode } from "react";
 import styled from "styled-components";
 
@@ -53,6 +54,8 @@ export const FormContainer = ({
   title,
   totalSteps,
 }: Props) => {
+  const { readTerms } = useGlobalStore();
+
   return (
     <Container>
       <FormHeader>{title}</FormHeader>
@@ -61,9 +64,13 @@ export const FormContainer = ({
         <Button type="button" onClick={handleBack} disabled={currentStep === 0}>
           Back
         </Button>
-        <Button type="submit" disabled={currentStep === totalSteps - 1}>
-          Next
-        </Button>
+        {readTerms ? (
+          <></>
+        ) : (
+          <Button type="submit" disabled={currentStep === totalSteps}>
+            Next
+          </Button>
+        )}
       </FormFooter>
     </Container>
   );

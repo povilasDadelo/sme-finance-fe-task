@@ -20,12 +20,14 @@ const Container = styled.div`
   background-color: transparent;
 `;
 
-const StepText = styled.div<{ $completed?: boolean }>`
+const StepText = styled.div<{ $completed?: boolean; $current?: boolean }>`
   font-size: 0.9rem;
   margin-bottom: 0.25rem;
-  color: ${({ $completed }) => ($completed ? "#007bff" : "#7f7f7f")};
+  color: ${({ $completed, $current }) =>
+    $current ? "#000" : $completed ? "#007bff" : "#7f7f7f"};
   border-left: 3px solid
-    ${({ $completed }) => ($completed ? "#007bff" : "#7f7f7f")};
+    ${({ $completed, $current }) =>
+      $current ? "#000" : $completed ? "#007bff" : "#7f7f7f"};
   padding-left: 8px;
   display: flex;
   align-items: center;
@@ -48,13 +50,16 @@ export const ProgressIndicator = ({
   steps,
   currentStep,
 }: ProgressIndicatorProps) => {
-  const progressPercentage = ((currentStep + 1) / steps.length) * 100;
+  const progressPercentage = (currentStep / steps.length) * 100;
 
   return (
     <Container>
       <StepPercentage>{`${progressPercentage.toFixed(0)}%`}</StepPercentage>
       {steps.map((step, index) => (
-        <StepText key={`s-${index}`} $completed={index <= currentStep}>
+        <StepText
+          key={`s-${index}`}
+          $current={currentStep === index}
+          $completed={index <= currentStep}>
           {step.title}
         </StepText>
       ))}

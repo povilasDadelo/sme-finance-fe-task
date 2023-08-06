@@ -5,10 +5,16 @@ import { Field, FieldProps } from "formik";
 interface CheckboxInputProps {
   label: string;
   name: string;
+  clickableComponent?: React.ReactNode;
 }
 
-const Container = styled.div`
+const Wrapper = styled.div`
   margin-bottom: 4px;
+`;
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const CheckboxLabel = styled.label`
@@ -22,31 +28,38 @@ const Error = styled.div`
   color: red;
 `;
 
-export const CheckboxInput = ({ label, name }: CheckboxInputProps) => {
+export const CheckboxInput = ({
+  label,
+  name,
+  clickableComponent,
+}: CheckboxInputProps) => {
   return (
-    <Container>
+    <Wrapper>
       <Field type="checkbox" name={name}>
         {({ field, form }: FieldProps) => (
           <>
-            <CheckboxLabel>
-              <input
-                type="checkbox"
-                {...field}
-                checked={field.value}
-                onChange={() =>
-                  field.onChange({
-                    target: { name: field.name, value: !field.value },
-                  })
-                }
-              />
-              {label}
-            </CheckboxLabel>
+            <Container>
+              <CheckboxLabel>
+                <input
+                  type="checkbox"
+                  {...field}
+                  checked={field.value}
+                  onChange={() =>
+                    field.onChange({
+                      target: { name: field.name, value: !field.value },
+                    })
+                  }
+                />
+                {label}
+              </CheckboxLabel>
+              {clickableComponent}
+            </Container>
             {form.touched[field.name] && form.errors[field.name] ? (
               <Error>{String(form.errors[field.name])}</Error>
             ) : null}
           </>
         )}
       </Field>
-    </Container>
+    </Wrapper>
   );
 };

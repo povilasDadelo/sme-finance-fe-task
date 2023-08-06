@@ -20,7 +20,6 @@ const InputContainer = styled.div<{ $right?: boolean }>`
   flex-direction: column;
   margin-bottom: 1rem;
   margin-right: ${({ $right }) => ($right ? "5px" : "0px")};
-  height: 48px;
 `;
 
 const Label = styled.label`

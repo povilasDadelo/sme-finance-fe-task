@@ -15,7 +15,7 @@ const Label = styled.label`
 
 const PhoneInputContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: baseline;
   padding: 0.2rem;
 `;
 

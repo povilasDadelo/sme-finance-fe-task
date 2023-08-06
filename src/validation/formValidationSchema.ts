@@ -17,5 +17,5 @@ export const personValidationSchema = Yup.object({
 });
 
 export const requestValidationSchema = Yup.object({
-  comment: Yup.string(),
+  comment: Yup.string().required("Request comment is required"),
 });

@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Input } from "../atoms/Input";
 import { PhoneInput } from "./PhoneInput";
 import { CheckboxInput } from "../atoms/CheckboxInput";
+import { ClickableText } from "../atoms/ClickableText";
+import { useGlobalStore } from "@/store/global.store";
 
 const CheckboxContainer = styled.div`
   display: flex;
@@ -11,6 +13,12 @@ const CheckboxContainer = styled.div`
 `;
 
 export const ContactPersonForm = () => {
+  const { readTerms, setReadTerms } = useGlobalStore();
+
+  if (readTerms) {
+    return <div>Terms</div>;
+  }
+
   return (
     <div>
       <Input label="Name" id="name" name="name" />
@@ -19,7 +27,16 @@ export const ContactPersonForm = () => {
       <PhoneInput />
       <CheckboxContainer>
         <CheckboxInput label="Marketing emails" name="marketing" />
-        <CheckboxInput label="Terms and conditions" name="terms" />
+        <CheckboxInput
+          label="Terms and conditions. "
+          name="terms"
+          clickableComponent={
+            <ClickableText
+              text="Read terms."
+              onClick={() => setReadTerms(true)}
+            />
+          }
+        />
       </CheckboxContainer>
     </div>
   );

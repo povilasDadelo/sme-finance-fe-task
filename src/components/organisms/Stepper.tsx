@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useGlobalStore } from "../../store/global.store";
 import { ProgressIndicator } from "../atoms/ProgressIndicator";
 import { EditForm } from "../molecules/EditForm";
+import { Summary } from "../molecules/Summary";
 
 interface StepperProps {
   steps: {
@@ -30,15 +31,22 @@ const StepperContent = styled.div`
 `;
 
 export const Stepper = ({ steps }: StepperProps) => {
-  const { currentStep, setCurrentStep } = useGlobalStore();
+  const { currentStep, readTerms, setCurrentStep, setReadTerms } =
+    useGlobalStore();
 
   const handleNext = () => {
-    if (currentStep < steps.length - 1) {
+    if (currentStep < steps.length) {
       setCurrentStep(currentStep + 1);
     }
   };
 
   const handleBack = () => {
+    if (readTerms) {
+      setReadTerms(false);
+
+      return;
+    }
+
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
     }
@@ -48,14 +56,18 @@ export const Stepper = ({ steps }: StepperProps) => {
     <StepperContainer>
       <ProgressIndicator steps={steps} currentStep={currentStep} />
       <StepperContent>
-        <EditForm
-          title={steps[currentStep].title}
-          component={steps[currentStep].component}
-          totalSteps={steps.length}
-          currentStep={currentStep}
-          handleBack={handleBack}
-          handleNext={handleNext}
-        />
+        {currentStep + 1 > steps.length ? (
+          <Summary handleBack={handleBack} />
+        ) : (
+          <EditForm
+            title={steps[currentStep].title}
+            component={steps[currentStep].component}
+            totalSteps={steps.length}
+            currentStep={currentStep}
+            handleBack={handleBack}
+            handleNext={handleNext}
+          />
+        )}
       </StepperContent>
     </StepperContainer>
   );

@@ -16,13 +16,16 @@ export interface FormData {
 
 interface StoreState {
   currentStep: number;
+  readTerms: boolean;
   formData: FormData;
   setCurrentStep: (step: number) => void;
   updateFormData: (data: FormData) => void;
+  setReadTerms: (data: boolean) => void;
 }
 
 export const useGlobalStore = create<StoreState>((set) => ({
   currentStep: 0,
+  readTerms: false,
   formData: {
     companyCode: "",
     companyName: "",
@@ -37,5 +40,6 @@ export const useGlobalStore = create<StoreState>((set) => ({
     terms: false,
   },
   setCurrentStep: (step) => set({ currentStep: step }),
+  setReadTerms: (data) => set({ readTerms: data }),
   updateFormData: (data) => set({ formData: data }),
 }));
