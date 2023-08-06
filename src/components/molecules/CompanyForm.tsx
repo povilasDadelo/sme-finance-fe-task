@@ -1,6 +1,6 @@
 import React from "react";
-import { Input } from "./Input"; // Import the Input component
-import { SelectInput } from "./SelectInput"; // Import the SelectInput component
+import { Input } from "../atoms/Input"; // Import the Input component
+import { SelectInput } from "../atoms/SelectInput"; // Import the SelectInput component
 
 export const CompanyForm = () => {
   const countryOptions = [

@@ -10,6 +10,8 @@ export interface FormData {
   countryCode: string;
   phoneNumber: string;
   comment: string;
+  marketing: boolean;
+  terms: boolean;
 }
 
 interface StoreState {

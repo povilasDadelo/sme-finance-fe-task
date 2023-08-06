@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Input } from "./Input";
-import { SelectInput } from "./SelectInput";
+import { Input } from "../atoms/Input";
+import { SelectInput } from "../atoms/SelectInput";
 
 const InputContainer = styled.div`
   margin-bottom: 1rem;

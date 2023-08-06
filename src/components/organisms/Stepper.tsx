@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { useGlobalStore } from "../store/global.store";
-import { ProgressIndicator } from "./ProgressIndicator";
-import { EditForm } from "./EditForm";
+import { useGlobalStore } from "../../store/global.store";
+import { ProgressIndicator } from "../atoms/ProgressIndicator";
+import { EditForm } from "../molecules/EditForm";
 
 interface StepperProps {
   steps: {

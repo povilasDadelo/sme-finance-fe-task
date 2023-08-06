@@ -1,9 +1,9 @@
 "use client";
 
-import { CompanyForm } from "@/components/CompanyForm";
-import { ContactPersonForm } from "@/components/ContactPersonForm";
-import { RequestForm } from "@/components/RequestForm";
-import { Stepper } from "@/components/Stepper";
+import { CompanyForm } from "@/components/molecules/CompanyForm";
+import { ContactPersonForm } from "@/components/molecules/ContactPersonForm";
+import { RequestForm } from "@/components/molecules/RequestForm";
+import { Stepper } from "@/components/organisms/Stepper";
 
 export default function Home() {
   const steps = [

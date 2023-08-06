@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Input } from "./Input";
+import { Input } from "../atoms/Input";
 import { PhoneInput } from "./PhoneInput";
-import { CheckboxInput } from "./CheckboxInput";
+import { CheckboxInput } from "../atoms/CheckboxInput";
 
 const CheckboxContainer = styled.div`
   display: flex;

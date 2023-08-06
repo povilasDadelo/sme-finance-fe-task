@@ -15,11 +15,11 @@ interface FormSelectInputProps extends FieldProps {
   options: { value: string; label: string }[];
 }
 
-const InputContainer = styled.div<{ right?: boolean }>`
+const InputContainer = styled.div<{ $right?: boolean }>`
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
-  margin-right: ${({ right }) => (right ? "5px" : "0px")};
+  margin-right: ${({ $right }) => ($right ? "5px" : "0px")};
   height: 48px;
 `;
 
@@ -51,6 +51,11 @@ const SelectStyled = styled.select`
   }
 `;
 
+const Error = styled.div`
+  font-size: 10px;
+  color: red;
+`;
+
 const FormSelectInput = ({ field, form, options }: FormSelectInputProps) => {
   const selectClass =
     form.touched[field.name] && form.errors[field.name]
@@ -70,7 +75,9 @@ const FormSelectInput = ({ field, form, options }: FormSelectInputProps) => {
         ))}
       </SelectStyled>
       {form.touched[field.name] && form.errors[field.name] ? (
-        <div className="error-message">{String(form.errors[field.name])}</div>
+        <Error className="error-message">
+          {String(form.errors[field.name])}
+        </Error>
       ) : null}
     </>
   );
@@ -78,7 +85,7 @@ const FormSelectInput = ({ field, form, options }: FormSelectInputProps) => {
 
 export const SelectInput = ({ id, label, name, options, right }: Props) => {
   return (
-    <InputContainer right={right}>
+    <InputContainer $right={right}>
       {label ? <Label htmlFor={name}>{label}</Label> : <></>}
       <Field id={id} name={name}>
         {(props: FieldProps) => (

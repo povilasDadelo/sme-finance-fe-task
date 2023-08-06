@@ -1,7 +1,13 @@
-import { useGlobalStore } from "@/store/global.store";
 import { Form, Formik } from "formik";
+import * as Yup from "yup";
+import { useGlobalStore } from "@/store/global.store";
 import { FormData } from "@/store/global.store";
 import { FormContainer } from "./FormContainer";
+import {
+  companyValidationSchema,
+  personValidationSchema,
+  requestValidationSchema,
+} from "@/validation/formValidationSchema";
 
 interface Props {
   title: string;
@@ -28,7 +34,21 @@ export const EditForm = ({
   };
 
   return (
-    <Formik initialValues={formData} onSubmit={handleSubmit}>
+    <Formik
+      initialValues={formData}
+      onSubmit={handleSubmit}
+      validationSchema={(() => {
+        switch (currentStep) {
+          case 0:
+            return companyValidationSchema;
+          case 1:
+            return personValidationSchema;
+          case 2:
+            return requestValidationSchema;
+          default:
+            return Yup.object({});
+        }
+      })()}>
       <Form>
         <FormContainer
           title={title}

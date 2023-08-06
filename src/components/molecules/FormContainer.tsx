@@ -22,6 +22,7 @@ const FormHeader = styled.div`
 
 const FormBody = styled.div`
   width: 100%;
+  margin-bottom: 10px;
 `;
 
 const FormFooter = styled.div`
@@ -38,6 +39,11 @@ const Button = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
 `;
 
 export const FormContainer = ({
@@ -52,7 +58,7 @@ export const FormContainer = ({
       <FormHeader>{title}</FormHeader>
       <FormBody>{children}</FormBody>
       <FormFooter>
-        <Button onClick={handleBack} disabled={currentStep === 0}>
+        <Button type="button" onClick={handleBack} disabled={currentStep === 0}>
           Back
         </Button>
         <Button type="submit" disabled={currentStep === totalSteps - 1}>

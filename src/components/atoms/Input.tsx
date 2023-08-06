@@ -13,7 +13,7 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
-  height: 48px;
+  /* height: 48px; */
 `;
 
 const Label = styled.label`
@@ -44,6 +44,11 @@ const InputStyled = styled.input`
   }
 `;
 
+const Error = styled.div`
+  font-size: 10px;
+  color: red;
+`;
+
 const FormInput = ({ field, form }: FieldProps) => {
   const inputClass =
     form.touched[field.name] && form.errors[field.name]
@@ -56,7 +61,7 @@ const FormInput = ({ field, form }: FieldProps) => {
     <>
       <InputStyled {...field} className={inputClass} />
       {form.touched[field.name] && form.errors[field.name] ? (
-        <div className="error-message">{String(form.errors[field.name])}</div>
+        <Error>{String(form.errors[field.name])}</Error>
       ) : null}
     </>
   );
