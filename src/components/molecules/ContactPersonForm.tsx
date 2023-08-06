@@ -12,11 +12,16 @@ const CheckboxContainer = styled.div`
   gap: 8px;
 `;
 
+const TermsContainer = styled.div`
+  min-height: 80px;
+  overflow-y: scroll;
+`;
+
 export const ContactPersonForm = () => {
   const { readTerms, setReadTerms } = useGlobalStore();
 
   if (readTerms) {
-    return <div>Terms</div>;
+    return <TermsContainer>Terms scrollable</TermsContainer>;
   }
 
   return (
