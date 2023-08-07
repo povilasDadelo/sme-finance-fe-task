@@ -12,13 +12,13 @@ Then run the project:
 yarn dev
 ```
 
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
 Run some tests:
 
 ```bash
 npx jest
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Some TODOs:
 
