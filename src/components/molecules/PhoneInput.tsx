@@ -17,6 +17,11 @@ const PhoneInputContainer = styled.div`
   display: flex;
   align-items: baseline;
   padding: 0.2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
 `;
 
 const countryCodes = [
