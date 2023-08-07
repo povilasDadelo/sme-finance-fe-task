@@ -74,9 +74,7 @@ const FormSelectInput = ({ field, form, options }: FormSelectInputProps) => {
         ))}
       </SelectStyled>
       {form.touched[field.name] && form.errors[field.name] ? (
-        <Error className="error-message">
-          {String(form.errors[field.name])}
-        </Error>
+        <Error>{String(form.errors[field.name])}</Error>
       ) : null}
     </>
   );
