@@ -16,8 +16,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Some TODOs:
 
-A theme object could be implemented.
-Colors could be moved to theme object.
-Figure out better mobile design for progress indicator.
-Add proper lint config.
-Add prettier.
+- A theme object could be implemented.
+- Colors could be moved to theme object.
+- Figure out better mobile design for progress indicator.
+- Add proper lint config.
+- Add prettier.
