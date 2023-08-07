@@ -1,18 +1,14 @@
 import { Form, Formik } from "formik";
-import * as Yup from "yup";
+import { Schema } from "yup";
 import styled from "styled-components";
 import { useGlobalStore } from "@/store/global.store";
 import { FormData } from "@/store/global.store";
 import { FormContainer } from "./FormContainer";
-import {
-  companyValidationSchema,
-  personValidationSchema,
-  requestValidationSchema,
-} from "@/validation/formValidationSchema";
 
 interface Props {
   title: string;
   component: React.ReactNode;
+  validationSchema: Schema;
   currentStep: number;
   totalSteps: number;
   handleBack: () => void;
@@ -26,6 +22,7 @@ const StyledForm = styled(Form)`
 export const EditForm = ({
   title,
   component,
+  validationSchema,
   currentStep,
   totalSteps,
   handleBack,
@@ -38,24 +35,11 @@ export const EditForm = ({
     handleNext();
   };
 
-  const getValidationSchema = () => {
-    switch (currentStep) {
-      case 0:
-        return companyValidationSchema;
-      case 1:
-        return personValidationSchema;
-      case 2:
-        return requestValidationSchema;
-      default:
-        return Yup.object({});
-    }
-  };
-
   return (
     <Formik
       initialValues={formData}
       onSubmit={handleSubmit}
-      validationSchema={getValidationSchema()}>
+      validationSchema={validationSchema}>
       <StyledForm>
         <FormContainer
           title={title}

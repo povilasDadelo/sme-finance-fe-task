@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Schema } from "yup";
 import { useGlobalStore } from "../../store/global.store";
 import { ProgressIndicator } from "../atoms/ProgressIndicator";
 import { EditForm } from "../molecules/EditForm";
@@ -9,6 +10,7 @@ interface StepperProps {
   steps: {
     title: string;
     component: React.ReactNode;
+    validationSchema: Schema;
   }[];
 }
 
@@ -76,6 +78,7 @@ export const Stepper = ({ steps }: StepperProps) => {
           <EditForm
             title={steps[currentStep].title}
             component={steps[currentStep].component}
+            validationSchema={steps[currentStep].validationSchema}
             totalSteps={steps.length}
             currentStep={currentStep}
             handleBack={handleBack}
