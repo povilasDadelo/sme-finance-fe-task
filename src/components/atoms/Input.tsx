@@ -7,6 +7,7 @@ interface InputProps {
   id: string;
   name: string;
   type?: "text" | "textarea";
+  testId?: string;
 }
 
 const InputContainer = styled.div`
@@ -70,7 +71,13 @@ const Error = styled.div`
   color: red;
 `;
 
-const FormInput = ({ field, form, type }: FieldProps & { type: string }) => {
+const FormInput = ({
+  field,
+  form,
+  type,
+  id,
+  testId,
+}: FieldProps & { type: string; id: string; testId?: string }) => {
   const inputClass =
     form.touched[field.name] && form.errors[field.name]
       ? "error"
@@ -81,9 +88,19 @@ const FormInput = ({ field, form, type }: FieldProps & { type: string }) => {
   return (
     <>
       {type === "textarea" ? (
-        <TextAreaStyled {...field} className={inputClass} />
+        <TextAreaStyled
+          id={id}
+          {...field}
+          className={inputClass}
+          data-testid={testId}
+        />
       ) : (
-        <InputStyled {...field} className={inputClass} />
+        <InputStyled
+          id={id}
+          {...field}
+          className={inputClass}
+          data-testid={testId}
+        />
       )}
       {form.touched[field.name] && form.errors[field.name] ? (
         <Error>{String(form.errors[field.name])}</Error>
@@ -92,12 +109,20 @@ const FormInput = ({ field, form, type }: FieldProps & { type: string }) => {
   );
 };
 
-export const Input = ({ id, label, name, type = "text" }: InputProps) => {
+export const Input = ({
+  id,
+  label,
+  name,
+  type = "text",
+  testId,
+}: InputProps) => {
   return (
     <InputContainer>
-      {label ? <Label htmlFor={name}>{label}</Label> : <></>}
-      <Field type={type} id={id} name={name}>
-        {(props: FieldProps) => <FormInput type={type} {...props} />}
+      {label ? <Label htmlFor={id}>{label}</Label> : <></>}
+      <Field type={type} name={name}>
+        {(props: FieldProps) => (
+          <FormInput id={id} type={type} testId={testId} {...props} />
+        )}
       </Field>
     </InputContainer>
   );

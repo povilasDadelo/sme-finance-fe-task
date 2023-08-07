@@ -8,10 +8,13 @@ interface Props {
   name: string;
   options: { value: string; label: string }[];
   right?: boolean;
+  testId?: string;
 }
 
 interface FormSelectInputProps extends FieldProps {
   right?: boolean;
+  id: string;
+  testId?: string;
   options: { value: string; label: string }[];
 }
 
@@ -55,7 +58,13 @@ const Error = styled.div`
   color: red;
 `;
 
-const FormSelectInput = ({ field, form, options }: FormSelectInputProps) => {
+const FormSelectInput = ({
+  field,
+  form,
+  options,
+  id,
+  testId,
+}: FormSelectInputProps) => {
   const selectClass =
     form.touched[field.name] && form.errors[field.name]
       ? "error"
@@ -65,7 +74,11 @@ const FormSelectInput = ({ field, form, options }: FormSelectInputProps) => {
 
   return (
     <>
-      <SelectStyled {...field} className={selectClass}>
+      <SelectStyled
+        id={id}
+        {...field}
+        className={selectClass}
+        data-testid={testId}>
         <option value="">Select an option</option>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
@@ -80,13 +93,25 @@ const FormSelectInput = ({ field, form, options }: FormSelectInputProps) => {
   );
 };
 
-export const SelectInput = ({ id, label, name, options, right }: Props) => {
+export const SelectInput = ({
+  id,
+  label,
+  name,
+  options,
+  right,
+  testId,
+}: Props) => {
   return (
     <InputContainer $right={right}>
-      {label ? <Label htmlFor={name}>{label}</Label> : <></>}
-      <Field id={id} name={name}>
+      {label ? <Label htmlFor={id}>{label}</Label> : <></>}
+      <Field name={name}>
         {(props: FieldProps) => (
-          <FormSelectInput options={options} {...props} />
+          <FormSelectInput
+            id={id}
+            testId={testId}
+            options={options}
+            {...props}
+          />
         )}
       </Field>
     </InputContainer>

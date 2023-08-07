@@ -35,8 +35,9 @@ export const PhoneInput = () => {
           id="countryCode"
           name="countryCode"
           options={countryCodes}
+          testId="countryCode"
         />
-        <Input id="phoneNumber" name="phoneNumber" />
+        <Input id="phoneNumber" name="phoneNumber" testId="phoneNumber" />
       </PhoneInputContainer>
     </InputContainer>
   );

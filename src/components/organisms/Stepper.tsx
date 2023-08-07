@@ -67,7 +67,7 @@ export const Stepper = ({ steps }: StepperProps) => {
   };
 
   return (
-    <StepperContainer>
+    <StepperContainer data-testid="stepper-component">
       <ProgressIndicator steps={steps} currentStep={currentStep} />
       <StepperContent>
         {currentStep + 1 > steps.length ? (
