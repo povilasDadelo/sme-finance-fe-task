@@ -18,6 +18,11 @@ const StepperContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const StepperContent = styled.div`
@@ -28,6 +33,15 @@ const StepperContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  @media (min-width: 768px) {
+    width: 420px;
+  }
+
+  @media (max-width: 767px) {
+    margin: 0 24px;
+    width: calc(100% - 48px);
+  }
 `;
 
 export const Stepper = ({ steps }: StepperProps) => {

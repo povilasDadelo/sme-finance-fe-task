@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useGlobalStore } from "@/store/global.store";
+import { Button } from "../atoms/Button";
 
 interface SummaryProps {
   handleBack: () => void;
@@ -18,19 +19,14 @@ const SummaryTitle = styled.h2`
   margin-bottom: 1rem;
 `;
 
+const SummaryBody = styled.div`
+  width: 100%;
+`;
+
 const SummaryFooter = styled.div`
   padding-top: 10px;
   display: flex;
   justify-content: space-between;
-`;
-
-const BackButton = styled.button`
-  padding: 0.5rem 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
 `;
 
 const SummaryItem = styled.div`
@@ -55,16 +51,18 @@ export const Summary = ({ handleBack }: SummaryProps) => {
   return (
     <SummaryContainer>
       <SummaryTitle>Summary</SummaryTitle>
-      <div>
+      <SummaryBody>
         {Object.entries(formData).map(([key, value]) => (
           <SummaryItem key={key}>
             <Label>{key}:</Label>
             <Value>{String(value)}</Value>
           </SummaryItem>
         ))}
-      </div>
+      </SummaryBody>
       <SummaryFooter>
-        <BackButton onClick={handleBack}>Back</BackButton>
+        <Button secondary onClick={handleBack}>
+          Back
+        </Button>
       </SummaryFooter>
     </SummaryContainer>
   );

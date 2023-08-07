@@ -18,6 +18,15 @@ const Container = styled.div`
   align-items: flex-start;
   justify-content: center;
   background-color: transparent;
+  z-index: 2;
+
+  @media (max-width: 768px) {
+    position: static;
+    align-self: center;
+    margin-left: 24px;
+    z-index: 1;
+    margin-bottom: 24px;
+  }
 `;
 
 const StepText = styled.div<{ $completed?: boolean; $current?: boolean }>`

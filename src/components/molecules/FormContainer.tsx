@@ -1,6 +1,7 @@
 import { useGlobalStore } from "@/store/global.store";
 import { ReactNode } from "react";
 import styled from "styled-components";
+import { Button } from "../atoms/Button";
 
 interface Props {
   children: ReactNode;
@@ -14,6 +15,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
 `;
 
 const FormHeader = styled.div`
@@ -33,20 +35,6 @@ const FormFooter = styled.div`
   width: 100%;
 `;
 
-const Button = styled.button`
-  padding: 0.5rem 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-
-  &:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-`;
-
 export const FormContainer = ({
   children,
   currentStep,
@@ -61,7 +49,11 @@ export const FormContainer = ({
       <FormHeader>{title}</FormHeader>
       <FormBody>{children}</FormBody>
       <FormFooter>
-        <Button type="button" onClick={handleBack} disabled={currentStep === 0}>
+        <Button
+          type="button"
+          secondary
+          onClick={handleBack}
+          disabled={currentStep === 0}>
           Back
         </Button>
         {readTerms ? (
